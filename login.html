@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html style="background:url(images/login_bg.jpg) repeat 100% 100%;">
+<head>
+    <title>登录 - DCIM 3.0</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Base/resource/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="Base/resource/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="Base/resource/css/ace.min.css" />
+    <link rel="stylesheet" href="Base/resource/css/common.css" />
+    <style>
+        body,.login-layout{
+            background:none;
+        }
+       .login-container{
+           width:380px;
+       }
+       .login-layout .widget-box{
+           background:#fff; 
+       }
+       .login-layout .widget-box .widget-main{
+           background:#fff;
+       }
+       .btn-primary{
+            background-color: #02aad2 !important;
+            border-color: #02aad2
+       }
+       .btn-primary:hover,.btn-primary:focus{
+            background-color: #0096ba !important;
+            border-color: #0096ba;
+       }
+       .login-layout .widget-box.visible{
+            -webkit-box-shadow:0 0 12px rgba(0, 0, 0, .6);  
+            -moz-box-shadow:0 0 12px rgba(0, 0, 0, .6);  
+            box-shadow:0 0 12px rgba(0, 0, 0, .6); 
+            border-radius:12px; 
+       }
+
+       .position-relative {
+           position:absolute;
+           left:50%;
+           top:50%;
+           width:400px; 
+           margin-left:-200px;
+           margin-top:-180px;
+       }
+       input[type="text"]:focus,input[type="password"]:focus,input.ace[type="checkbox"]:checked,input.ace[type="checkbox"]:focus,input.ace[type="checkbox"],.form-control:focus, select:focus,input[type=checkbox].ace:hover+.lbl::before,input[type=radio].ace:hover+.lbl::before,input[type=checkbox].ace+.lbl:hover::before,input[type=radio].ace+.lbl:hover::before{
+           border-color:#0096ba;
+       }
+       .login-layout label:first-child{
+           margin-bottom:30px;
+           margin-top:18px;
+       }
+      .login-layout label.inline{
+          margin:0;
+      }
+    </style>
+</head>
+<body class="login-layout">
+    <div class="main-container">
+        <div class="main-content">
+                    <div class="login-container">
+                        <div class="position-relative">
+                            <div id="login-box" class="login-box visible widget-box no-border">
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <div><img src="images/logo.png" /></div>
+                                        
+                                        <div class="space-6"></div>
+                                        <form>
+                                            <fieldset>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input id="account" type="text" class="form-control" placeholder="账号" />
+                                                        <i class="icon-user"></i>
+                                                    </span>
+                                                </label>
+
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input id="password" type="password" class="form-control" placeholder="密码" />
+                                                        <i class="icon-lock"></i>
+                                                    </span>
+                                                </label>
+
+                                                <div class="space"></div>
+
+                                                <div class="clearfix">
+                                                    <label class="inline">
+                                                        <input id="rememberMe" type="checkbox" class="ace" />
+                                                        <span class="lbl"> 记住我</span>
+                                                    </label>
+
+                                                    <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+                                                        <i class="icon-key"></i>
+                                                        登录
+                                                    </button>
+                                                    <i class="icon-spinner icon-spin orange bigger-250 pull-right" style="display:none"></i>
+                                                </div>
+                                                <div class="space-4"></div>
+                                            </fieldset>
+                                        </form>
+                                    </div><!-- /widget-main -->
+                                </div><!-- /widget-body -->
+                            </div><!-- /login-box -->
+                        </div><!-- /position-relative -->
+                    </div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+     <!-- /.main-container -->
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+    <script src="Base/resource/js/jquery-2.0.3.min.js"></script>
+    <script src="Base/resource/js/bootstrap.min.js"></script>
+    <script src="Base/resource/js/layer/layer.js"></script>
+    <script src="Base/resource/js/typeahead-bs2.min.js"></script>
+    <script src="Base/resource/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="Base/resource/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="Base/resource/js/jquery.slimscroll.min.js"></script>
+    <script src="Base/resource/js/jquery.easy-pie-chart.min.js"></script>
+    <script src="Base/resource/js/jquery.sparkline.min.js"></script>
+    <script src="Base/resource/js/flot/jquery.flot.min.js"></script>
+    <script src="Base/resource/js/flot/jquery.flot.pie.min.js"></script>
+    <script src="Base/resource/js/flot/jquery.flot.resize.min.js"></script>
+    <!-- ace scripts -->
+    <script src="Base/resource/js/ace-extra.min.js"></script>
+    <script src="Base/resource/js/ace-elements.min.js"></script>
+    <script src="Base/resource/js/ace.min.js"></script>
+    <script src="Base/resource/js/md5.min.js"></script>
+    <script src="Base/resource/js/common.js"></script>
+    <script type="text/javascript">
+      
+        window.jQuery && jQuery(function ($) {
+            //function auth_ajax() {
+                
+            //}
+            function onBeforeLogin() {
+                $('.icon-spinner').show();
+                $('button').hide();
+            }
+            function onAfterLogin() {
+                $('.icon-spinner').hide();
+                $('button').show();
+            }
+            //当登录成功时
+            function onLoginSuccess() {
+               
+                var queryParams = getQueryParams();
+                if ("returnUrl" in queryParams) {
+                    var page = getHashParams().page;
+                    var url = queryParams["returnUrl"];
+                    if (page != null)
+                        url += "#page=" + page;
+                    $.get("Base/api/menu?action=permissions", function (result) {
+                       
+                        if (result && result.PageElements && result.PageElements.length > 0) {
+                            localStorage.authSession = JSON.stringify(result.PageElements);
+                        } else {
+                            localStorage.authSession = "allShow";
+                        }
+                        window.location.href = url;
+                        
+                    })
+                   
+                }
+                else
+                    window.location.href = "/";
+            }
+            onBeforeLogin();
+            //尝试自动登录
+            $.post("/api/DCIM3.Plugin.Base/Log/In", function (json) {
+                if (json.code == 0) {
+                    onLoginSuccess();
+                    
+
+                } else {
+                    onAfterLogin();
+                }
+            });
+
+            //加载多语言
+            $.get("Base/api/language", function (json) {
+                var selectElement = $("#selectLanguage");
+                for (i in json) {
+                    var data = json[i];
+                    selectElement.append('<option value="{0}">{1}</option>'.format(data.key, data.value));
+                }
+                selectElement.change(function () {
+                    var newLanguage = selectElement.val();
+                    if (newLanguage == "sys")
+                        delCookie("Accept-Language");
+                    else
+                        setCookie("Accept-Language", newLanguage, 365 * 1000);
+                    location.reload();
+                });
+                var language = getCookie("Accept-Language");
+                if (language == "")
+                    return;
+                selectElement.val(language)
+            });
+
+            var login = function () {
+                onBeforeLogin();
+                $.get("/api/DCIM3.Plugin.Base/Log/Salt", function (json) {
+                    var data = json.data;
+                    var fixedSalt = data.FixedSalt;
+                    var tempSalt = data.TempSalt;
+                  
+                    var account = $('#account').val();
+                    var password = $('#password').val();
+                    var hash = md5(md5(account + fixedSalt + password) + tempSalt);
+                    var rememberMe = $('#rememberMe')[0].checked;
+                    if (account && password) {
+                        $.post("/api/DCIM3.Plugin.Base/Log/In", { Account: account, Password: hash, RememberMe: rememberMe }, function (result) {
+                            if (result.code == 0) {
+                                onLoginSuccess();
+                                
+                            } else {
+
+                                top.layer.msg(result.message, { icon: 0 });
+                                onAfterLogin();
+                            }
+
+                        }).error(function () {
+                            top.layer.msg("网络错误!");
+                            onAfterLogin();
+                        });
+                    } else {
+                        messageBox({ message: "账号或密码不能为空！", icon: 0 })
+                        onAfterLogin();
+                    }
+                });
+            }
+
+            $('input').keypress(function (e) {
+                if (e.keyCode == 13)
+                    login();
+            });
+            $('.btn-primary').click(login);
+        });
+    </script>
+</body>
+</html>

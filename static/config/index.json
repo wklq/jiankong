@@ -1,0 +1,54 @@
+[
+    [
+        {
+            "title":"温度状态(Top 5)",
+            "pointid":"1000000004",
+            "unit":"℃",
+            "data":[]
+        },
+        {
+            "title":"溶解氧状态(Top 5)",
+            "pointid":"1000000001",
+            "unit":"mg/L",
+            "data":[]
+        },
+        {
+            "title":"PH值状态(Top 5)",
+            "pointid":"1000000003",
+            "unit":"",
+            "data":[]
+        },
+        {
+            "title":"氨氮状态(Top 5)",
+            "pointid":"1000000002",
+            "unit":"",
+            "data":[]
+        }
+    ],
+    [
+        {
+            "title":"温度",
+            "pointid":"1000000004",
+            "unit":"℃",
+            "data":[]
+        },
+        {
+            "title":"溶解氧",
+            "pointid":"1000000001",
+            "unit":"mg/L",
+            "data":[]
+        },
+        {
+            "title":"PH值",
+            "pointid":"1000000003",
+            "unit":"",
+            "data":[]
+        },
+        {
+            "title":"氨氮值",
+            "pointid":"1000000002",
+            "unit":"",
+            "data":[]
+        }
+    ]
+]

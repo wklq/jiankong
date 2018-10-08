@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas</title>
+	<style>
+	body{
+		position: relative;
+		width:100%;
+		height:100%;
+	}
+	#toolDiv{
+		position: absolute;
+	}
+	.dot-handle{
+		position: absolute;
+		width: 8px;
+		height:8px;
+		border:1px solid #000;
+		border-radius: 100%;
+		cursor: pointer;
+
+	}
+	#demo1{
+	width:100%;
+	height:100%;}
+	</style>
+</head>
+
+<body >
+<div id='demo1'>
+<canvas id="demo" width="500" height="500" ></canvas> 
+	<div id="toolDiv">
+	
+	</div>
+</div>
+
+<!-- <div class="dot-handle"></div> -->
+<script type="text/javascript" src='jquery-3.3.1.min.js'></script>
+<script type="text/javascript">
+
+	 var ctx = document.getElementById("demo").getContext('2d');
+	 var move = false;
+	 var currentHtml;
+	 ctx.translate(0.5, 0.5);
+	  /*ctx.imageSmoothingEnabled = true;
+	 	ctx.beginPath();
+	 	ctx.moveTo(0,0);
+	 	ctx.lineTo(500,80);
+	 	ctx.lineTo(54,53);
+	 	ctx.lineTo(14,63);
+	 	ctx.fillStyle = "#f00";
+	 	ctx.strokeStyle = '#f00';
+	 	ctx.closePath();
+	 	ctx.fill();*/
+	 	var points = [{x:0,y:0},{x:300,y:80},{x:300,y:180},{x:0,y:260}]
+function drawPath(points,style,color){
+	ctx.beginPath();
+
+	if(points.length>0){
+		for(var i = 0;i<points.length;i++){
+			if(i==0){
+			ctx.moveTo(points[i].x,points[i].y);
+		}else{
+			ctx.lineTo(points[i].x,points[i].y);
+		}
+		}
+	}
+	ctx[style+'Style'] = color || '#f00';
+	ctx.closePath();
+	ctx[style]();
+
+}
+function toolInit(points){
+	$(".dot-handle").remove();
+	if(points.length>0){
+var html = "";
+	for(var i = 0;i<points.length;i++){
+		
+		html +='<div class="dot-handle" data-index="'+i+'" style="top:'+(points[i].y-4)+'px;left:'+(points[i].x-4)+'px;"></div>';
+	}
+	$('body').append(html);
+}
+}
+function clearCanvas()
+{  
+    var c=document.getElementById("demo");  
+     cxt=c.getContext("2d");  
+    c.height=c.height;  
+}  
+$(function(){
+drawPath(points,'fill','#0ff');
+toolInit(points);
+$("body").on(".dot-handle",'mouseup',function(e){
+	move = true;
+	console.log("1111"+e);
+})
+$("body").on(".dot-handle",'mousemove',function(e){
+	if(move){
+		e.left;
+	}
+})
+$("body").mousedown(function(e){
+	if(e.target.className == "dot-handle"){
+		move = true;
+		currentHtml = $(e.target);
+		
+	};
+	
+
+})
+$("body").mouseup(function(e){
+	move = false;
+})
+$("body").mousemove(function(e){
+	if(move){
+		var index = currentHtml.data("index") 
+		points[index] = {x:e.clientX,y:e.clientY};
+		clearCanvas();
+		drawPath(points,'fill','#0ff');
+		toolInit(points);
+	}
+})
+$("#toolDiv").resize(function(){
+alert('变化了')
+})
+})
+</script>
+
+</body>
+</html>
